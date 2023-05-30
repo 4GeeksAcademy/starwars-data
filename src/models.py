@@ -15,25 +15,32 @@ class User(Base):
     name = Column(String(250), nullable=False)
     last_name = Column(String(250), nullable=False)
     suscription_date = Column(String(250), nullable=False)
-    email = Column(Integer, ForeignKey('person.id'), nullable=False)
+    email = Column(Integer, nullable=False)
     suscription_date = Column(String(250), nullable=False)
-    favourite_characters = Column(Integer, ForeignKey('favourite_characters.id'))
-    favourite_planets = Column(Integer, ForeignKey('favourite_planets.id'))
+  
 
-class FavouritesCharacters(Base):
+class Favourites(Base):
+    __tablename__ = 'favourites'
+    id = Column(Integer, primary_key=True)
+    total_favourite_characters = Column(Integer, ForeignKey('favourites_characters.id')) 
+    total_favourite_planetss = Column(Integer, ForeignKey('favourites_planets.id'))  
+
+class Favourites_characters(Base):
     __tablename__ = 'favourites_characters'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     character_ID = Column(Integer, ForeignKey('characters.id'))
+    user_ID = Column(Integer, ForeignKey('user.id'))
    
 
-class FavouritesPlanets(Base):
+class Favourites_planets(Base):
     __tablename__ = 'favourites_planets'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    planet_ID = (Integer, ForeignKey('planets.id'))
+    planet_ID = Column(Integer, ForeignKey('planets.id'))
+    user_ID = Column(Integer, ForeignKey('user.id'))
    
 
 class Characters(Base):
