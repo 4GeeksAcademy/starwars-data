@@ -19,11 +19,7 @@ class User(Base):
     suscription_date = Column(String(250), nullable=False)
   
 
-class Favourites(Base):
-    __tablename__ = 'favourites'
-    id = Column(Integer, primary_key=True)
-    total_favourite_characters = Column(Integer, ForeignKey('favourites_characters.id')) 
-    total_favourite_planetss = Column(Integer, ForeignKey('favourites_planets.id'))  
+
 
 class Favourites_characters(Base):
     __tablename__ = 'favourites_characters'
